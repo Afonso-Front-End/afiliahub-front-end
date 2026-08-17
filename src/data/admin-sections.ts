@@ -1,0 +1,19 @@
+import type { SectionId } from "@/types/cms";
+
+export const SECTION_LABELS: Record<SectionId, string> = {
+  "hero-main": "Ofertas Imperdíveis (Hero principal)",
+  "hero-cashback": "Card Em Alta (Hero)",
+  "hero-coupon": "Card Cupom relâmpago (Hero)",
+  categories: "Categorias Populares",
+  stores: "Lojas / Marketplaces",
+  "products-header": "Cabeçalho Produtos em Destaque",
+  products: "Produtos em Destaque",
+  "flash-deals": "Melhores Promoções do Dia",
+  cashback: "Cupons & Ofertas (3 cards)",
+  "featured-coupons": "Cupons em destaque",
+  "sidebar-promo": "Promo da Sidebar",
+  footer: "Rodapé",
+  "page-cashback": "Página Como Economizar",
+  "page-cupons": "Página Cupons Exclusivos",
+  "page-maisclicados": "Página Mais Clicados",
+};
