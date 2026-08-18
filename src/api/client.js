@@ -6,12 +6,17 @@ function getApiBase() {
         return configured.replace(/\/$/, "");
     }
 
+    if (import.meta.env.DEV) {
+        return "http://localhost:4000";
+    }
+
     if (typeof window !== "undefined") {
         return "";
     }
 
     return "http://localhost:4000";
 }
+
 export async function apiFetch(path, init) {
     const res = await fetch(`${getApiBase()}${path}`, {
         ...init,

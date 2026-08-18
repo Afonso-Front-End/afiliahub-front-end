@@ -29,5 +29,9 @@ export function patchSiteContentSection(queryClient, sectionId, sectionData) {
 
 export async function reloadSiteContentFromServer(queryClient) {
   await queryClient.invalidateQueries({ queryKey: SITE_CONTENT_QUERY_KEY });
-  return queryClient.fetchQuery(siteContentQueryOptions);
+  return queryClient.fetchQuery({
+    ...siteContentQueryOptions,
+    staleTime: 0,
+    gcTime: 0,
+  });
 }
