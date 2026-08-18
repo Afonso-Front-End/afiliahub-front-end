@@ -37,6 +37,9 @@ export function SectionEditForm({ sectionId, initial, onSave, saving, createOnMo
     }, [siteContent.categories.items]);
     const productStoreOptions = useMemo(() => getStoreSelectOptions(siteContent), [siteContent.stores.items]);
     useEffect(() => {
+        setData(initial);
+    }, [initial]);
+    useEffect(() => {
         if (!createOnMount || createHandledRef.current)
             return;
         createHandledRef.current = true;

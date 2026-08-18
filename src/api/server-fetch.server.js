@@ -14,6 +14,7 @@ export async function serverApiFetch(path, init) {
     const res = await fetch(`${apiUrl}${path}`, {
         ...init,
         headers,
+        cache: "no-store",
     });
     return parseApiJsonResponse(res);
 }
