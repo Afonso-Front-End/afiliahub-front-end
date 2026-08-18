@@ -5,14 +5,12 @@ import { SystemConfigForm } from "@/components/admin/SystemConfigForm";
 import { SystemConfigIntro } from "@/components/admin/SystemConfigIntro";
 import { useSystemConfigPage } from "@/hooks/use-system-config-page";
 import { ADMIN_SHELL_MAIN_NARROW_CLASS } from "@/lib/admin-layout";
-import { getAdminSession } from "@/api/auth";
+import { requireAdminSession } from "@/lib/require-admin-session";
 import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/admin/configuracoes")({
+    ssr: false,
     beforeLoad: async () => {
-        const session = await getAdminSession();
-        if (!session)
-            throw redirect({ to: "/admin/login" });
-        return session;
+        return requireAdminSession();
     },
     component: AdminSystemConfigPage,
 });

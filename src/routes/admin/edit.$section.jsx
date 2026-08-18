@@ -6,17 +6,16 @@ import { editSectionSubtitle } from "@/components/admin/AdminEditSectionExtras";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ADMIN_SHELL_MAIN_NARROW_CLASS } from "@/lib/admin-layout";
 import { SECTION_LABELS } from "@/data/admin-sections";
-import { getAdminSession } from "@/api/auth";
+import { requireAdminSession } from "@/lib/require-admin-session";
 import { fetchSection } from "@/api/cms";
 import { useAdminSectionSave } from "@/hooks/use-admin-section-save";
 export const Route = createFileRoute("/admin/edit/$section")({
+    ssr: false,
     validateSearch: (search) => ({
         criar: search.criar === "1" || search.criar === 1 || search.criar === true,
     }),
     beforeLoad: async () => {
-        const session = await getAdminSession();
-        if (!session)
-            throw redirect({ to: "/admin/login" });
+        await requireAdminSession();
     },
     loader: async ({ params }) => {
         const sectionId = params.section;

@@ -1,15 +1,15 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Zap } from "lucide-react";
 import { AuthEmailPasswordFields, AuthSubmitButton } from "@/components/auth/AuthFormFields";
-import { adminLogin, getAdminSession } from "@/api/auth";
+import { adminLogin } from "@/api/auth";
+import { redirectIfAdminSession } from "@/lib/require-admin-session";
 import { useFormSubmit } from "@/hooks/use-form-submit";
 export const Route = createFileRoute("/admin/login")({
+    ssr: false,
     beforeLoad: async () => {
-        const session = await getAdminSession();
-        if (session)
-            throw redirect({ to: "/admin" });
+        await redirectIfAdminSession();
     },
     component: AdminLoginPage,
 });

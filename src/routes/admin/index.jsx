@@ -1,5 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { AppLayout } from "@/components/affiliate/AppLayout";
 import { Hero } from "@/components/affiliate/Hero";
 import { Categories } from "@/components/affiliate/Categories";
@@ -8,14 +8,12 @@ import { FlashDeals } from "@/components/affiliate/FlashDeals";
 import { CashbackSection } from "@/components/affiliate/CashbackSection";
 import { AdminSectionOverlay } from "@/components/admin/AdminSectionOverlay";
 import { AdminShell } from "@/components/admin/AdminShell";
-import { getAdminSession } from "@/api/auth";
+import { requireAdminSession } from "@/lib/require-admin-session";
 import { useSiteContent } from "@/context/site-content-context";
 export const Route = createFileRoute("/admin/")({
+    ssr: false,
     beforeLoad: async () => {
-        const session = await getAdminSession();
-        if (!session)
-            throw redirect({ to: "/admin/login" });
-        return session;
+        return requireAdminSession();
     },
     component: AdminPreviewPage,
 });

@@ -5,15 +5,13 @@ import { Settings2 } from "lucide-react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { StoreApiCard } from "@/components/admin/StoreApiCard";
 import { ADMIN_SHELL_MAIN_NARROW_CLASS } from "@/lib/admin-layout";
-import { getAdminSession } from "@/api/auth";
+import { requireAdminSession } from "@/lib/require-admin-session";
 import { fetchStoreApiConfigs } from "@/api/store-api";
 import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/admin/config-apis")({
+    ssr: false,
     beforeLoad: async () => {
-        const session = await getAdminSession();
-        if (!session)
-            throw redirect({ to: "/admin/login" });
-        return session;
+        return requireAdminSession();
     },
     component: AdminConfigApisPage,
 });

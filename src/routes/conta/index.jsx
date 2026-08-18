@@ -4,6 +4,7 @@ import { AppLayout } from "@/components/affiliate/AppLayout";
 import { getUserSession } from "@/api/user-auth";
 import { useUserAuth } from "@/context/user-auth-context";
 export const Route = createFileRoute("/conta/")({
+    ssr: false,
     loader: async () => {
         const session = await getUserSession();
         if (!session?.user)
