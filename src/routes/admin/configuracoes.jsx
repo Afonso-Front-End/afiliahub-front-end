@@ -1,5 +1,5 @@
 import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { SystemConfigForm } from "@/components/admin/SystemConfigForm";
 import { SystemConfigIntro } from "@/components/admin/SystemConfigIntro";

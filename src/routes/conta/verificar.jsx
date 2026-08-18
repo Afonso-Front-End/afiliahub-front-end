@@ -4,6 +4,7 @@ import { AppLayout } from "@/components/affiliate/AppLayout";
 import { VerifyEmailForm } from "@/components/conta/VerifyEmailForm";
 import { useVerifyEmail } from "@/hooks/use-verify-email";
 export const Route = createFileRoute("/conta/verificar")({
+    ssr: false,
     validateSearch: (search) => ({
         email: typeof search.email === "string" ? search.email : undefined,
     }),

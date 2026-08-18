@@ -4,9 +4,14 @@ import { useState } from "react";
 import { AppLayout } from "@/components/affiliate/AppLayout";
 import { AuthEmailPasswordFields, AuthSubmitButton } from "@/components/auth/AuthFormFields";
 import { registerUser } from "@/api/user-auth";
+import { redirectIfUserSession } from "@/lib/require-user-session";
 import { useAuthCredentials } from "@/hooks/use-auth-credentials";
 import { useFormSubmit } from "@/hooks/use-form-submit";
 export const Route = createFileRoute("/conta/registar")({
+    ssr: false,
+    beforeLoad: async () => {
+        await redirectIfUserSession();
+    },
     component: RegisterPage,
 });
 function RegisterPage() {

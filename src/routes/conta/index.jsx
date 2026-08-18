@@ -1,14 +1,12 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppLayout } from "@/components/affiliate/AppLayout";
-import { getUserSession } from "@/api/user-auth";
+import { requireUserSession } from "@/lib/require-user-session";
 import { useUserAuth } from "@/context/user-auth-context";
 export const Route = createFileRoute("/conta/")({
     ssr: false,
     loader: async () => {
-        const session = await getUserSession();
-        if (!session?.user)
-            throw redirect({ to: "/conta/entrar" });
+        const session = await requireUserSession();
         return session.user;
     },
     component: AccountPage,

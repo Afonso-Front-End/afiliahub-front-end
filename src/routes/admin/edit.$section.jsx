@@ -22,7 +22,7 @@ export const Route = createFileRoute("/admin/edit/$section")({
         if (!(sectionId in SECTION_LABELS)) {
             throw redirect({ to: "/admin" });
         }
-        const data = await fetchSection({ data: { sectionId } });
+        const data = await fetchSection(sectionId);
         return { sectionId, data };
     },
     component: AdminEditSectionPage,

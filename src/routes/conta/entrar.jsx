@@ -3,10 +3,15 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AppLayout } from "@/components/affiliate/AppLayout";
 import { AuthEmailPasswordFields, AuthSubmitButton } from "@/components/auth/AuthFormFields";
 import { loginUser } from "@/api/user-auth";
+import { redirectIfUserSession } from "@/lib/require-user-session";
 import { useUserAuth } from "@/context/user-auth-context";
 import { useAuthCredentials } from "@/hooks/use-auth-credentials";
 import { useFormSubmit } from "@/hooks/use-form-submit";
 export const Route = createFileRoute("/conta/entrar")({
+    ssr: false,
+    beforeLoad: async () => {
+        await redirectIfUserSession();
+    },
     component: LoginPage,
 });
 function LoginPage() {
