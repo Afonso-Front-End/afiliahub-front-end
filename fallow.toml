@@ -1,0 +1,13 @@
+entry = ["src/start.ts"]
+ignorePatterns = ["**/routeTree.gen.ts"]
+ignoreDependencies = ["nitro"]
+
+[duplicates]
+minLines = 8
+threshold = 15
+
+[health]
+ignore = ["**/SectionEditForm.tsx", "**/routeTree.gen.ts"]
+
+[rules]
+unused-dev-dependencies = "warn"
